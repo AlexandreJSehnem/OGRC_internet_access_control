@@ -19,18 +19,35 @@ class MainHandler(tornado.web.RequestHandler):
             # file.write(str(single_port)+" "+str(port_status))
             self.port_list[str(single_port)] = 1  # port_status
         print(self.port_list)
+        file.close()
+        self.loader = tornado.template.Loader("/home/dev/OGRC_internet_access_control/templates")
         super().__init__(application, request, **kwargs)
 
     def get(self):
-        loader = tornado.template.Loader("/home/dev/OGRC_internet_access_control/templates")
-        self.write(loader.load("switch.html").generate())
+        self.write(self.loader.load("login.html").generate())
         # self.write("Hello, world")
 
     def post(self, *args, **kwargs):
-        print("oh man")
-        code = 404
-        self.set_status(code)
-        self.finish({'Error:': 'Just a test', 'Code': code, 'reason': 'Really, its just a test'})
+        user = self.get_body_argument("user")
+        senha = self.get_body_argument("senha")
+        file = open("auth", "r")
+        count = 0
+        print(user)
+        print(senha)
+        for line in file:
+            line = line.replace("\n", "")
+            print(line)
+            if count == 0 and user == line:
+                count += 1
+                continue
+            elif count == 1 and senha == line:
+                count += 1
+                continue
+            else:
+                self.write(self.loader.load("login.html").generate())
+                return
+        self.write(self.loader.load("manager.html").generate())
+
 
 
 if __name__ == "__main__":
