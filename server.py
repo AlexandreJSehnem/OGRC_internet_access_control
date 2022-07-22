@@ -46,7 +46,7 @@ class MainHandler(tornado.web.RequestHandler):
             else:
                 self.write(self.loader.load("login.html").generate())
                 return
-        self.write(self.loader.load("manager.html").generate())
+        self.write(self.loader.load("manager.html").generate(ports=self.port_list))
 
 
 
