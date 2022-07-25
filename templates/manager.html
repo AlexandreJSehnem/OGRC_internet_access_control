@@ -4,8 +4,13 @@
     <body>
         <p>MANAGER</p>
         {% for port in ports %}
-        <form method="post" name="form" value="manager">    
-        <input type="submit"></input>
+        <form method="post" name="form" value="manager">
+            <label for="">Porta {{ports[port][1]}}:</label>
+            {% if ports[port][0] == 1%}
+                <input type="submit" value="Ligado" name="{{ ports[port][1] }}"></input>
+            {% else %}
+                <input type="submit" value="Desligado" name="{{ ports[port][1] }}"></input>
+            {% end %}
         </form>
         {% end %}
         
