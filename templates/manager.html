@@ -2,18 +2,31 @@
     <head>
     </head>
     <body>
-        <p>MANAGER</p>
-        {% for port in ports %}
-        <form method="post" name="form" value="manager">
-            <label for="">Porta {{ports[port][1]}}:</label>
-            {% if ports[port][0] == 1%}
-                <input type="submit" value="Ligado" name="{{ ports[port][1] }}"></input>
-            {% else %}
-                <input type="submit" value="Desligado" name="{{ ports[port][1] }}"></input>
+        <div style = "border-style: solid; border-radius: 5px; width: 230px;">
+            <p>Sala 1</p>
+            {% for port in ports %}
+            <form method="post" name="form" value="manager">
+                <label for="">Porta {{ports[port][1]}}:</label>
+                {% if ports[port][0] == 1%}
+                    <input type="submit" value="Ligado" name="{{ ports[port][1] }}"></input>
+                {% else %}
+                    <input type="submit" value="Desligado" name="{{ ports[port][1] }}"></input>
+                {% end %}
+            </form>
             {% end %}
-        </form>
-        {% end %}
-        
-
+        </div>
+        <div style = "border-style: solid; border-radius: 5px; width: 230px;">
+            <p>Sala 2</p>
+            {% for porti in ports2 %}
+            <form method="post" name="form" value="manager">
+                <label for="">Porta {{ports2[porti][1]}}:</label>
+                {% if ports2[porti][0] == 1%}
+                    <input type="submit" value="Ligado" name="{{ ports2[porti][1] }}"></input>
+                {% else %}
+                    <input type="submit" value="Desligado" name="{{ ports2[porti][1] }}"></input>
+                {% end %}
+            </form>
+            {% end %}
+        </div>
     </body>
 </html>
